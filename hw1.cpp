@@ -1,10 +1,11 @@
 #include "tokens.hpp"
-
+#include <stdio.h>
 int main()
 {
 	int token;
 	while(token = yylex()) {
-	// Your code here
-	}
+	  printf(" %d worked \n" ,token);
+	}  
+
 	return 0;
 }

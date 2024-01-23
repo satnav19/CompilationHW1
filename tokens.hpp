@@ -31,6 +31,7 @@
     NUM = 27,
     STRING = 28
   };
+  #include<stddef.h>
   extern int yylineno;
   extern char* yytext;
   extern size_t yyleng;
