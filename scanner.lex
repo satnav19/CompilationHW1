@@ -5,6 +5,8 @@ void showToken(const char*);
 
 %option yylineno
 %option noyywrap
+badNum [0-][0-9]+ 
+illegalFloat [0-9]+"."[0-9]+
 digit [0-9]
 letter [a-zA-Z]
 whitespace [\t\n\r ]
@@ -20,6 +22,8 @@ id [a-zA-Z][a-zA-Z0-9]*
 string (\".*\")
 %%
 int showToken("INT");
+{badNum} showToken("unknown");
+{illegalFloat} showToken("unknown");
 {relative} showToken("RELOP");
 byte showToken("BYTE");
 {assign} showToken("ASSIGN");
