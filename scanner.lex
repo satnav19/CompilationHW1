@@ -7,11 +7,45 @@ void showToken(const char*);
 %option noyywrap
 digit [0-9]
 letter [a-zA-Z]
-whitespace [\t\n ]
-
+whitespace [\t\n\r ]
+semiColon ";"
+leftP "("
+rightP ")"
+leftBrace "{"
+rightBrace "}"
+assign "="
+relative "=="|"!="|"<"|">"|"<="|">="
+binaryOp "+"|"-"|"*"|"/"
+id [a-zA-Z][a-zA-Z0-9]*
+string (\".*\")
 %%
+int showToken("INT");
+{relative} showToken("RELOP");
+byte showToken("BYTE");
+{assign} showToken("ASSIGN");
+b showToken("B");
+{binaryOp} showToken("BINOP");
+bool showToken("BOOL");
+and showToken("AND");
+or showToken("OR");
+not showToken("NOT");
+true showToken("TRUE");
+false showToken("FALSE");
+return showToken("RETURN");
+if showToken("IF");
+else showToken("ELSE");
+while showToken("WHILE");
+break showToken("BREAK");
+continue showToken("CONTINUE");
+void showToken("VOID");
+{semiColon} showToken("SC");
+{leftP} showToken("LPAREN");
+{rightP} showToken("RPAREN");
+{leftBrace} showToken("LBRACE");
+{rightBrace} showToken("RBRACE");
 {digit}+   showToken("NUM");
-{letter}+ showToken("WORD");
+{id} showToken("ID");
+{string} showToken("STRING");
 {whitespace} ;
 .   showToken("unknown");
 %%
