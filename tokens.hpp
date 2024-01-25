@@ -2,6 +2,8 @@
 #define TOKENS_HPP_
   enum tokentype
   {
+    ERR = -2,
+    WS = -1,
     VOID = 1,
     INT = 2,
     BYTE = 3,
@@ -31,9 +33,8 @@
     NUM = 27,
     STRING = 28
   };
-  #include<stddef.h>
   extern int yylineno;
   extern char* yytext;
-  extern size_t yyleng;
+  extern int yyleng;
   extern int yylex();
 #endif /* TOKENS_HPP_ */
