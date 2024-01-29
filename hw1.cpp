@@ -28,7 +28,7 @@ void printer(int token){
     case ASSIGN: printf("%d ASSIGN %s\n", yylineno, yytext);break;
     case RELOP: printf("%d RELOP %s\n", yylineno, yytext);break;
     case BINOP: printf("%d BINOP %s\n", yylineno, yytext);break;
-    case COMMENT: printf("%d COMMENT %s\n", yylineno, yytext);break;
+    case COMMENT: printf("%d COMMENT //\n", yylineno);break;
     case ID: printf("%d ID %s\n", yylineno, yytext);break;
     case NUM: printf("%d NUM %s\n", yylineno, yytext);break;
     case STRING: printf("%d STRING %s\n", yylineno, yytext);break;

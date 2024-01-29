@@ -6,7 +6,7 @@
 %option yylineno
 %option noyywrap
 badNum [0-][0-9]+ 
-comment "//"[^\r\n]*
+comment "//".*
 illegalFloat [0-9]+"."[0-9]+
 digit [0-9]
 letter [a-zA-Z]
