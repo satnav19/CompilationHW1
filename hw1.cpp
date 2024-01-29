@@ -2,7 +2,7 @@
 #include <stdio.h>
 void printer(int token){
   switch (token) {
-    case ERR:printf("ERR %s\n",yytext);break;
+    case ERR: printf("ERR %s\n",yytext);break;
     case WS: return;
     case VOID: printf("%d VOID %s\n", yylineno, yytext);break;
     case INT: printf("%d INT %s\n", yylineno, yytext);break;
@@ -31,7 +31,8 @@ void printer(int token){
     case COMMENT: printf("%d COMMENT //\n", yylineno);break;
     case ID: printf("%d ID %s\n", yylineno, yytext);break;
     case NUM: printf("%d NUM %s\n", yylineno, yytext);break;
-    case STRING: printf("%d STRING %s\n", yylineno, yytext);break;
+    case STRING: printf("%d STRING %s", yylineno, yytext);break;
+    case INNERSTRING: printf("kaki %s", yytext);
     default: printf("%d WTF %s\n", yylineno, yytext);break;
   }
 

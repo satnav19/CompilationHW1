@@ -31,7 +31,9 @@
     COMMENT = 25,
     ID = 26,
     NUM = 27,
-    STRING = 28
+    STRING = 28,
+    INNERSTRING = 29,
+    ENDOFSTRING = 30,
   };
   extern int yylineno;
   extern char* yytext;

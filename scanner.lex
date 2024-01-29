@@ -1,8 +1,14 @@
 %{
 #include<stdio.h>
 #include"tokens.hpp"
+void endStringHelper();
+tokentype stringHelper();
+bool stringflag = false;
+void stringStarter();
 %}
-
+%x FIRST_STRING
+%x IN_STRING
+%x BACKSLASH
 %option yylineno
 %option noyywrap
 badNum [-][0-9]+ 
@@ -20,10 +26,26 @@ assign "="
 relative "=="|"!="|"<"|">"|"<="|">="
 binaryOp "+"|"-"|"*"|"/"
 id [a-zA-Z][a-zA-Z0-9]*
-string (\".*\")
-
+stringDelim "\""
 %%
 0 return(NUM);
+{stringDelim} BEGIN(FIRST_STRING);
+<FIRST_STRING>{
+  \" printf("\n");BEGIN(INITIAL); 
+  \\ BEGIN(BACKSLASH);
+ [^\\\"]* return(STRING);
+}
+<BACKSLASH>{
+  t printf("\t");BEGIN(IN_STRING);
+  n printf("\n");BEGIN(IN_STRING);
+  r printf("\r");BEGIN(IN_STRING);
+  . return(ERR);
+}
+<IN_STRING>{
+  \" printf("\n");BEGIN(INITIAL);
+  \\ BEGIN(BACKSLASH);
+  [^\\\"]* printf("%s",yytext);
+}
 int return(INT);
 {badNum} return(ERR);
 {illegalFloat} return(ERR);
@@ -53,7 +75,6 @@ void return(VOID);
 {rightBrace} return(RBRACE);
 {number}   return(NUM);
 {id} return(ID);
-{string} return(STRING);
 {whitespace} return(WS) ;
 .   return(ERR);
 %%
