@@ -5,10 +5,10 @@
 
 %option yylineno
 %option noyywrap
-badNum [0-][0-9]+ 
+badNum [-][0-9]+ 
 comment "//".*
 illegalFloat [0-9]+"."[0-9]+
-digit [0-9]
+number [1-9][0-9]*
 letter [a-zA-Z]
 whitespace [\t\n\r ]
 semiColon ";"
@@ -21,7 +21,9 @@ relative "=="|"!="|"<"|">"|"<="|">="
 binaryOp "+"|"-"|"*"|"/"
 id [a-zA-Z][a-zA-Z0-9]*
 string (\".*\")
+
 %%
+0 return(NUM);
 int return(INT);
 {badNum} return(ERR);
 {illegalFloat} return(ERR);
@@ -49,7 +51,7 @@ void return(VOID);
 {rightP} return(RPAREN);
 {leftBrace} return(LBRACE);
 {rightBrace} return(RBRACE);
-{digit}+   return(NUM);
+{number}   return(NUM);
 {id} return(ID);
 {string} return(STRING);
 {whitespace} return(WS) ;
