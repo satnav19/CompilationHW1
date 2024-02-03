@@ -2,6 +2,8 @@
 #define TOKENS_HPP_
   enum tokentype
   {
+    BAD_STRING = -4,
+    UNCLOSED = -3, 
     ERR = -2,
     WS = -1,
     VOID = 1,
