@@ -7,11 +7,6 @@ testsurl="https://webcourse.cs.technion.ac.il/fc159753hw_236360_202101/hw/WCFile
 hostname="cscomp"
 tmpdir="selfcheck_tmp"
 
-if [ "$(hostname)" != "$hostname" ]; then
-	echo "This script is only intended to run on $hostname"
-	exit
-fi
-
 if [ -z "$1" ]; then
 	echo "Usage: ./"$( basename "$0" )" <your submission zip file>"
 	exit
