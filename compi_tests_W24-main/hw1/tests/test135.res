@@ -1,6 +1,0 @@
-1 BINOP +
-1 BYTE byte
-1 STRING Y 24707 " 	 
-1 ID Y
-1 NUM 24707
-Error \
